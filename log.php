@@ -2,13 +2,15 @@
 session_start();
 $errorMsg = "";
 $validUser = $_SESSION["login"] === true;
-if(isset($_POST["sub"])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $validUser = $_POST["username"] == "admin" && $_POST["password"] == "password";
   if(!$validUser) $errorMsg = "Invalid username or password.";
-  else $_SESSION["login"] = true;
+  else $_SESSION["username"] = 'AYEYE BRAZORF';
 }
 if($validUser) {
-   #header("Location: /login-success.php"); die();
-    header("Location: /home.html"); die();
-}?>
+    header("Location: /home.php"); die();
+} else {
+    header("Location: /login.html"); die();
+}
+?>
 
